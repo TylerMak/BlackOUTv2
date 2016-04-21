@@ -70,6 +70,7 @@ public class SoundManager : MonoBehaviour {
 
 		}
 	}
+
 	public void playSoundEffect(int index){
 		sourceEffect.clip = audioClips[index];
 		sourceEffect.Play ();

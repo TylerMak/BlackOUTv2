@@ -15,6 +15,7 @@ public class CheckpointScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){		
 		if (collider.tag == "Player"){
+			SoundManager.instance.playSoundEffect (3);
 			collider.SendMessage ("SetCheckpointPosition", gameObject.transform.position);
 			Destroy (gameObject);
 		}			

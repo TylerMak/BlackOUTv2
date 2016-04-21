@@ -20,6 +20,11 @@ public class ProjectileEnemyController : MonoBehaviour
     public float waitBetweenShots;
     private float shotCounter;
 
+	//Sound Delaying Variables ((Created by Tyler for experimentation))
+	private bool soundCanPlay = true;
+	private float soundCanPlayTime;
+	private float soundDelayTime = 5f;
+
     //public Collider2D other;
 
     // Use this for initialization
@@ -35,6 +40,10 @@ public class ProjectileEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (Time.time > soundCanPlayTime) //Allowing the sound that was delayed to play again if the conditions are met.
+		{
+			soundCanPlay = true;
+		}
         
             shotCounter -= Time.deltaTime;
         if (Time.time > nextFlipChance)
@@ -63,6 +72,13 @@ public class ProjectileEnemyController : MonoBehaviour
         }
             if (other.tag == "Player")
         {
+			if(soundCanPlay)//Plays the sound if 'soundCanPlay' thinks it's ok. He knows best. ((This is to prevent sound spamming))
+			{
+				SoundManager.instance.playSoundEffect (5);
+				soundCanPlay = false; 
+				soundCanPlayTime = Time.time + soundDelayTime;
+			}
+
             if (facingRight && other.transform.position.x < transform.position.x)
             {
                 flipFacing();
@@ -84,6 +100,7 @@ public class ProjectileEnemyController : MonoBehaviour
             
             if (startShootTime < Time.time)
             {
+				SoundManager.instance.playSoundEffect (1);//Using Chargeup sound as the firing sound. It's funny.
                 if (!facingRight)
                 {
                     GameObject flipThis = Instantiate(enemyProjectile, launchPoint.position, launchPoint.rotation) as GameObject;

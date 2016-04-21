@@ -17,12 +17,14 @@ public class HealthBarManager : MonoBehaviour {
 
 	private MovementScript thePlayer;
 	private Rigidbody2D playerbody;
+	private SpriteRenderer spriteRenderer;
 
 	void Start ()
 	{
 		numberOfHearts = hearts.Length;
 		thePlayer = GetComponent<MovementScript> ();
 		playerbody = GetComponent<Rigidbody2D> ();
+		spriteRenderer = GetComponent<SpriteRenderer> ();
 
 		/*	Taylor: Checks to see if game is being loaded or if it is on Level02(or a different level). 
 		 	Basically, checks to see if its a new game. 
@@ -52,8 +54,7 @@ public class HealthBarManager : MonoBehaviour {
 			if (coll.gameObject.tag == "Danger")
 			{
 				SendKnockBackMessage(coll.transform.position);
-				numberOfHearts--;
-				hearts[numberOfHearts].SetActive(false);
+				hurtPlayer (1);
 				StartCoroutine("makeInvincible");
 			}
 		}
@@ -93,8 +94,7 @@ public class HealthBarManager : MonoBehaviour {
 			if (coll.gameObject.tag == "EnemyProjectile")
 			{
 				SendKnockBackMessage(coll.transform.position);
-				numberOfHearts--;
-				hearts[numberOfHearts].SetActive(false);
+				hurtPlayer (1);
 				StartCoroutine("makeInvincible");
 			}
 		}
@@ -140,8 +140,10 @@ public class HealthBarManager : MonoBehaviour {
 	IEnumerator makeInvincible()
 	{
 		isInvincible = true;
+		spriteRenderer.material.SetColor("_Color", Color.grey);//One way of changing the color to grey.
 		yield return new WaitForSeconds(invincibleTimeInSeconds);
 		isInvincible = false;
+		spriteRenderer.material.SetColor("_Color", Color.white);//One way of changing the color to white.
 		//Debug.Log("Player is not Invincible");
 	}
 
@@ -149,9 +151,9 @@ public class HealthBarManager : MonoBehaviour {
 		StartCoroutine ("haltMovement"); 
 
 		if(hazardObjPos.x > playerbody.transform.position.x)
-			playerbody.AddRelativeForce(new Vector2(-500,500));
+			playerbody.AddRelativeForce(new Vector2(-200,200));//Knocking towards the left.
 		else 
-			playerbody.AddForce(new Vector2(500,500));
+			playerbody.AddForce(new Vector2(200,200));//Knocking towards the right.
 	}
 
 	public int getNumberOfActiveHearts()
@@ -162,6 +164,7 @@ public class HealthBarManager : MonoBehaviour {
 	//Eventually want to make methods to add health, reset health(Have that^), and deal specific damage(Here)
 	public void hurtPlayer (int damageAmount) //Tyler: This is used when the player activates devices that need energy.
 	{
+		SoundManager.instance.playSoundEffect (6);
 		numberOfHearts = numberOfHearts-damageAmount;
 
 		if (numberOfHearts < 0)//Just in case, making sure it can't go under 0 hearts/energy units.         

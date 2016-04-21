@@ -53,7 +53,7 @@ public class MovementScript : MonoBehaviour {
 		if (isGrounded && Input.GetKeyDown(KeyCode.Space))
 			playerBody.velocity = new Vector2 (playerBody.velocity.x, jumpSpeed);
 
-		if (!isGrounded && canBoost && Input.GetKeyDown(KeyCode.R))
+		if (!isGrounded && canBoost && Input.GetKeyDown(KeyCode.Space))
 		{
 			SoundManager.instance.playSoundEffect (0);
 			StartCoroutine(Boost(0.15f));
@@ -146,7 +146,8 @@ public class MovementScript : MonoBehaviour {
 		float time = 0;
 		canBoost = false;
 
-		while (boostDuration > time)
+		//To stop the speed glitch. Make another condition for the while loop. If for any reason
+		while (boostDuration > time && movementEnabled == true) //TYLER: The 'movement' part stops the boosting if you boost into anything that gives knockback.
 		{
 			time += Time.deltaTime;
 			GetComponent<Rigidbody2D>().velocity = boostSpeed;

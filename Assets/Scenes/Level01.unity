@@ -2750,6 +2750,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11489768, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: audioClips.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 482782, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.06277046
@@ -2817,6 +2821,34 @@ Prefab:
     - target: {fileID: 8211164, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489768, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ee3c6317a3e84dafa30faa74d0ebc97, type: 3}
+    - target: {fileID: 11489768, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: audioClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b8d5164fc6e94261b7f0c862226190e, type: 3}
+    - target: {fileID: 11489768, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: audioClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0986fe1eb2e72476fa9de7517709bc74, type: 3}
+    - target: {fileID: 8299612, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: m_Volume
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 8220818, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254190, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211164, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
+      propertyPath: m_Volume
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32d0c5c36c3d94e2a8e2dc15e0f73f33, type: 2}
